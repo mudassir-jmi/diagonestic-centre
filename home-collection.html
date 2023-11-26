@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous" />
+    <title>Document</title>
+  </head>
+  <style>
+    main {
+      background: #f8f9fa;
+    }
+    .home-collection {
+      max-width: 1000px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 15px 0;
+    }
+    .home-collection-form {
+      background: #fff;
+      border-radius: 11px;
+      padding: 20px 30px;
+      margin-bottom: 25px;
+      margin-top: 25px;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      width: 100%;
+    }
+  </style>
+  <body>
+    <main>
+      <section class="home-collection" style="margin-top: 25px">
+        <form class="home-collection-form">
+          <div class="container">
+            <div class="row radius-inner">
+              <div class="col-sm-12">
+                <h3 class="section-heading1">Home Collection Query Form</h3>
+              </div>
+              <p>
+                Hi there. Don't know which test/package to choose from? Nothing
+                to worry about! Please fill in the details below and someone
+                from our team will call back for home collection confirmation
+              </p>
+              <p class="mb-3">
+                <strong
+                  ><span class="text-danger">Note: </span
+                  ><span>Fields marked with * are mandatory.</span></strong
+                >
+              </p>
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label for="">Patient Name <sup>*</sup></label
+                  ><input
+                    type="text"
+                    formcontrolname="contactPersonName"
+                    placeholder=""
+                    class="form-control ng-untouched ng-pristine ng-invalid" />
+                  <div class="invalid-feedback">
+                    <div class="ng-star-inserted">Please enter ptient name</div>
+                    <!---->
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label for="">E-mail</label
+                  ><input
+                    type="email"
+                    formcontrolname="email"
+                    placeholder=""
+                    class="form-control ng-untouched ng-pristine ng-valid"
+                    pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+                  <div class="invalid-feedback"><!----><!----></div>
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label for="">Phone Number <sup>*</sup></label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">+91</span>
+                    </div>
+                    <input
+                      type="text"
+                      maxlength="10"
+                      formcontrolname="contactPersonContact"
+                      placeholder=""
+                      class="form-control ng-untouched ng-pristine ng-invalid"
+                      pattern="^((\+91-?)|0)?[0-9]{10}$" />
+                    <div class="invalid-feedback">
+                      <div class="ng-star-inserted">
+                        Please enter phone number
+                      </div>
+                      <!----><!---->
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label for="">Attach Prescription</label
+                  ><input
+                    type="file"
+                    name="prescription"
+                    formcontrolname="prescription"
+                    placeholder="Description"
+                    class="form-control ng-untouched ng-pristine ng-valid" /><span
+                    class="invalid-feedback"
+                    ><!----><!----></span
+                  ><!---->
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="center-btn">
+                  <button
+                    style="cursor: pointer"
+                    type="submit"
+                    class="btn cmnyellow-btn mt-4"
+                    title="Disabled untill form is valid"
+                    disabled="">
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,233 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600;700;800&display=swap");
+:root {
+  --primary-color: #0b51b3;
+  --main-color: #fecc4e;
+}
+body {
+  font-family: "Open Sans", sans-serif;
+  padding-top: 56px;
+}
+/* Navbar Start  */
+.navbar {
+  background-color: #31bfc9;
+}
+.logo-name {
+  font-size: 20px;
+  color: #fff;
+}
+.nav-li > li {
+  font-size: 18px;
+  font-weight: 500;
+  margin-left: 20px;
+}
+.cart-icon {
+  font-size: 20px;
+  width: 32px;
+}
+.nav-link {
+  color: #fff;
+}
+/* Navbar End  */
+
+/* Navbar Search Button */
+input[type="search"] {
+  margin-top: 5px;
+  width: 100%;
+  height: 35px;
+  outline-offset: 0 !important;
+  padding: 5px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #fff url(../img/search.png) !important;
+  background-repeat: no-repeat !important;
+  background-position: 95% 50% !important;
+  border: none;
+  border-bottom: 2px solid #448ac0;
+  border-radius: 10px;
+}
+/* Navbar Search Button End */
+
+/* carousel item Start */
+.carousel-item img {
+  height: 300px;
+  object-fit: cover;
+}
+/* carousel item End */
+
+/* Quick-Card-Section Start */
+.quick-card-section {
+  height: 180px;
+  background-color: #001a4b;
+}
+.quick-card-inner {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 15px 0;
+}
+.quick-card-inner > div > a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+}
+/* Quick-Card-Section End */
+
+/* Popular Test card Start */
+.text {
+  width: 262px;
+  height: 150px;
+  position: relative;
+}
+.popular-test {
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px 2.6px;
+  box-shadow: 0px 16px 28px 0px #24242414;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px,
+    rgba(0, 0, 0, 0.05) 0px 5px 10px;
+  border-radius: 11px;
+  border: none;
+}
+
+.text > h5 {
+  border-bottom: 1px solid var(--main-color);
+  display: inline-block;
+  font-size: 18px;
+  margin-top: 10px;
+  margin-left: 15px;
+}
+.text .text-border {
+  border-bottom: 1px solid #bcbcbc;
+}
+.text > p {
+  /* margin-top: 20px;
+  margin-left: 20px; */
+  font-size: 12px;
+  font-weight: 600;
+  padding: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: unset;
+  /* text-align: justify; */
+}
+
+.know-more > a {
+  margin: 0px 20px 20px 0px;
+  color: var(--primary-color);
+  font-size: 16px;
+  font-weight: 600;
+  position: absolute;
+  top: 120px;
+  left: 150px;
+}
+
+.pricebtn {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.price-div {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  text-align: left;
+  padding: 5px 10px;
+}
+.price-div > span {
+  width: 40%;
+}
+/* Popular Test card End */
+
+/* All Test Page Start */
+.create-account {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.all-test-card {
+  background-color: #e5ecf0;
+  border-radius: 11px;
+}
+/* All Test Page End */
+
+/* contact deatils css start */
+
+main {
+  background: #f8f9fa;
+}
+.contact-details {
+  background: #fff;
+  border-radius: 11px;
+  padding: 20px 30px;
+  margin-bottom: 25px;
+  margin-top: 25px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  width: 100%;
+}
+.text-heading {
+  font-size: 28px;
+  font-weight: 700;
+}
+.embed-responsive-16by9 {
+  width: 100%;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+}
+
+/* contact details css end */
+
+/* Our Mission nd Vision CSS Start */
+.our__vision__card,
+.our__mission__card,
+.our__journey__card,
+.aboutus__card {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 11px;
+}
+/* Our Mission nd Vision CSS End */
+
+/* Footer Css Start */
+.footer-border {
+  background-color: var(--primary-color);
+}
+.footer-bg {
+  background-color: #31bfc9;
+}
+.footer-patients-info > p > a {
+  text-decoration: none;
+}
+/* Footer Css End */
+
+/* All media Query here */
+
+@media (max-width: 768px) {
+  .button.btn.btn-primary {
+    margin-top: -10px;
+  }
+}
+
+@media (max-width: 500px) {
+  .quick-card-inner {
+    margin-right: 5px !important;
+  }
+  .quick-card-inner > div > a > img {
+    width: 70px;
+  }
+  a.navbar-brand {
+    font-size: 13px;
+  }
+  button.btn.btn-primary {
+    margin-top: 12px;
+  }
+}
+
+/* form validation css */
+.error {
+  color: red;
+  size: 80%;
+}
+.hidden {
+  display: none;
+}
+
+/* form validation css */
