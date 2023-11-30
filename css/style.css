@@ -23,6 +23,7 @@ body {
 .cart-icon {
   font-size: 20px;
   width: 32px;
+  cursor: pointer;
 }
 .nav-link {
   color: #fff;

@@ -71,252 +71,104 @@ function validateLastName() {
   return true;
 }
 
-// book test js start here ###################
+// book test JS start here ###################
 
-var shoppingCart = (function () {
-  cart = [];
+document.addEventListener("DOMContentLoaded", function () {
+  var cartItems = [];
 
-  function Item(name, price, count) {
-    this.name = name;
-    this.price = price;
-    this.count = count;
-  }
+  function updateCartDisplay() {
+    var cartCount = document.getElementById("cart-items");
+    var cartList = document.getElementById("cartItemsList");
+    var totalAmount = 0;
 
-  // Save cart
-  function saveCart() {
-    localStorage.setItem("shoppingCart", JSON.stringify(cart));
-  }
+    cartCount.textContent = cartItems.length; // Update cart count in header
 
-  // Load cart
-  function loadCart() {
-    cart = JSON.parse(localStorage.getItem("shoppingCart"));
-  }
-  if (localStorage.getItem("shoppingCart") != null) {
-    loadCart();
-  }
+    // Clear existing items in the cart modal
+    cartList.innerHTML = "";
 
-  var obj = {};
+    cartItems.forEach(function (item) {
+      var listItem = document.createElement("li");
+      listItem.className =
+        "list-group-item d-flex justify-content-between align-items-center";
+      listItem.textContent = item.name + " - ₹" + item.price;
 
-  // Add to cart
-  obj.addItemToCart = function (name, price, count) {
-    for (var item in cart) {
-      if (cart[item].name === name) {
-        cart[item].count++;
-        saveCart();
-        return;
-      }
-    }
-    var item = new Item(name, price, count);
-    cart.push(item);
-    saveCart();
-  };
-  // Set count from item
-  obj.setCountForItem = function (name, count) {
-    for (var i in cart) {
-      if (cart[i].name === name) {
-        cart[i].count = count;
-        break;
-      }
-    }
-  };
-  // Remove item from cart
-  obj.removeItemFromCart = function (name) {
-    for (var item in cart) {
-      if (cart[item].name === name) {
-        cart[item].count--;
-        if (cart[item].count === 0) {
-          cart.splice(item, 1);
-        }
-        break;
-      }
-    }
-    saveCart();
-  };
+      var quantityDiv = document.createElement("div");
+      quantityDiv.className = "input-group input-group-sm";
+      quantityDiv.innerHTML = `
+          <button class="btn btn-outline-secondary" type="button" onclick="decreaseQuantity('${item.name}')">-</button>
+          <span class="input-group-text">${item.quantity}</span>
+          <button class="btn btn-outline-secondary" type="button" onclick="increaseQuantity('${item.name}')">+</button>
+          <button class="btn btn-danger" type="button" onclick="removeItem('${item.name}')">Remove</button>
+        `;
 
-  // Remove all items from cart
-  obj.removeItemFromCartAll = function (name) {
-    for (var item in cart) {
-      if (cart[item].name === name) {
-        cart.splice(item, 1);
-        break;
-      }
-    }
-    saveCart();
-  };
+      listItem.appendChild(quantityDiv);
+      cartList.appendChild(listItem);
 
-  // Clear cart
-  obj.clearCart = function () {
-    cart = [];
-    saveCart();
-  };
-
-  // Count cart
-  obj.totalCount = function () {
-    var totalCount = 0;
-    for (var item in cart) {
-      totalCount += cart[item].count;
-    }
-    return totalCount;
-  };
-
-  // Total cart
-  obj.totalCart = function () {
-    var totalCart = 0;
-    for (var item in cart) {
-      totalCart += cart[item].price * cart[item].count;
-    }
-    return Number(totalCart.toFixed(2));
-  };
-
-  // List cart
-  obj.listCart = function () {
-    var cartCopy = [];
-    for (i in cart) {
-      item = cart[i];
-      itemCopy = {};
-      for (p in item) {
-        itemCopy[p] = item[p];
-      }
-      itemCopy.total = Number(item.price * item.count).toFixed(2);
-      cartCopy.push(itemCopy);
-    }
-    return cartCopy;
-  };
-  return obj;
-})();
-
-// Add item
-$(".default-btn").click(function (event) {
-  // alert('working');
-  event.preventDefault();
-  var name = $(this).data("name");
-  var price = Number($(this).data("price"));
-  shoppingCart.addItemToCart(name, price, 1);
-  displayCart();
-});
-
-// Clear items
-$(".clear-cart").click(function () {
-  shoppingCart.clearCart();
-  displayCart();
-});
-
-function displayCart() {
-  var cartArray = shoppingCart.listCart();
-  var output = "";
-  for (var i in cartArray) {
-    output +=
-      "<tr>" +
-      "<td>" +
-      cartArray[i].name +
-      "</td>" +
-      "<td>(" +
-      cartArray[i].price +
-      ")</td>" +
-      "<td><div class='input-group'>" +
-      "<input type='number' class='item-count form-control' data-name='" +
-      cartArray[i].name +
-      "' value='" +
-      cartArray[i].count +
-      "'>" +
-      "</div></td>" +
-      "<td><button class='delete-item btn btn-danger' data-name=" +
-      cartArray[i].name +
-      ">X</button></td>" +
-      " = " +
-      "<td>" +
-      cartArray[i].total +
-      "</td>" +
-      "</tr>";
-  }
-  $(".show-cart").html(output);
-  $(".total-cart").html(shoppingCart.totalCart());
-  $(".total-count").html(shoppingCart.totalCount());
-}
-
-// Delete item button
-
-$(".show-cart").on("click", ".delete-item", function (event) {
-  var name = $(this).data("name");
-  shoppingCart.removeItemFromCartAll(name);
-  displayCart();
-});
-
-// Item count input
-$(".show-cart").on("change", ".item-count", function (event) {
-  var name = $(this).data("name");
-  var count = Number($(this).val());
-  shoppingCart.setCountForItem(name, count);
-  displayCart();
-});
-displayCart();
-
-//////// ui script start /////////
-// Tabs Single Page
-$(".tab ul.tabs").addClass("active").find("> li:eq(0)").addClass("current");
-$(".tab ul.tabs li a").on("click", function (g) {
-  var tab = $(this).closest(".tab"),
-    index = $(this).closest("li").index();
-  tab.find("ul.tabs > li").removeClass("current");
-  $(this).closest("li").addClass("current");
-  tab
-    .find(".tab_content")
-    .find("div.tabs_item")
-    .not("div.tabs_item:eq(" + index + ")")
-    .slideUp();
-  tab
-    .find(".tab_content")
-    .find("div.tabs_item:eq(" + index + ")")
-    .slideDown();
-  g.preventDefault();
-});
-
-// search function
-$("#search_field").on("keyup", function () {
-  var value = $(this).val();
-  var patt = new RegExp(value, "i");
-
-  $(".tab_content")
-    .find(".col-lg-3")
-    .each(function () {
-      var $table = $(this);
-
-      if (!($table.find(".featured-item").text().search(patt) >= 0)) {
-        $table.not(".featured-item").hide();
-      }
-      if ($table.find(".col-lg-3").text().search(patt) >= 0) {
-        $(this).show();
-        document.getElementById("not_found").style.display = "none";
-      } else {
-        document.getElementById("not_found").innerHTML = " Product not found..";
-        document.getElementById("not_found").style.display = "block";
-      }
+      totalAmount += item.price * item.quantity;
     });
-});
-// book test js end
 
-// Define a function to handle the "Add to Cart" action
-function addToCart() {
-  // You can store the item details in an object, such as name, price, etc.
-  const item = {
-    name: "Product Name",
-    price: 1000, // The price can be retrieved dynamically from the page
-    // Add other details as needed
+    // Update total amount in the cart modal
+    cartList.innerHTML += `
+        <li class="list-group-item d-flex justify-content-between">
+          <strong>Total</strong>
+          <span>₹${totalAmount}</span>
+        </li>
+      `;
+  }
+
+  function addToCart(itemName, itemPrice) {
+    var existingItem = cartItems.find((item) => item.name === itemName);
+
+    if (existingItem) {
+      existingItem.quantity++;
+    } else {
+      cartItems.push({
+        name: itemName,
+        price: parseInt(itemPrice),
+        quantity: 1,
+      });
+    }
+
+    updateCartDisplay();
+  }
+
+  // Event listener for "Book Now" buttons
+  var bookButtons = document.querySelectorAll(".add-to-cart");
+  bookButtons.forEach(function (button) {
+    button.addEventListener("click", function (event) {
+      var itemName = event.target.getAttribute("data-name");
+      var itemPrice = event.target.getAttribute("data-price");
+      addToCart(itemName, itemPrice);
+    });
+  });
+
+  // Functions for cart operations
+  window.increaseQuantity = function (itemName) {
+    var item = cartItems.find((item) => item.name === itemName);
+    if (item) {
+      item.quantity++;
+      updateCartDisplay();
+    }
   };
 
-  // Check if the cart already exists in local storage
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  window.decreaseQuantity = function (itemName) {
+    var item = cartItems.find((item) => item.name === itemName);
+    if (item && item.quantity > 1) {
+      item.quantity--;
+      updateCartDisplay();
+    }
+  };
 
-  // Add the item to the cart
-  cart.push(item);
+  window.removeItem = function (itemName) {
+    cartItems = cartItems.filter((item) => item.name !== itemName);
+    updateCartDisplay();
+  };
 
-  // Update the cart in local storage
-  localStorage.setItem("cart", JSON.stringify(cart));
-
-  // Provide feedback to the user (you can customize this)
-  alert("Item added to cart!");
-}
-
-// Attach the addToCart function to the "Book Now" button
-const addToCartButton = document.getElementById("addToCartButton");
-addToCartButton.addEventListener("click", addToCart);
+  // Event listener for cart icon
+  var cartIcon = document.querySelector(".cart-icon");
+  cartIcon.addEventListener("click", function () {
+    updateCartDisplay();
+    var cartModal = new bootstrap.Modal(document.getElementById("cartModal"));
+    cartModal.show();
+  });
+});

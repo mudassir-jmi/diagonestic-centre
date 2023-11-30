@@ -11,7 +11,7 @@
       rel="stylesheet"
       integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
       crossorigin="anonymous" />
-    <title>Document</title>
+    <title>Home Collection | Shadab Imaging & Diagnostic Centre</title>
   </head>
   <style>
     main {
@@ -62,18 +62,20 @@
                     placeholder=""
                     class="form-control ng-untouched ng-pristine ng-invalid" />
                   <div class="invalid-feedback">
-                    <div class="ng-star-inserted">Please enter ptient name</div>
+                    <div class="ng-star-inserted">
+                      Please enter patient name
+                    </div>
                     <!---->
                   </div>
                 </div>
               </div>
               <div class="col-md-5">
                 <div class="form-group">
-                  <label for="">E-mail</label
+                  <label for="">Test Name <sup>*</sup></label
                   ><input
-                    type="email"
-                    formcontrolname="email"
-                    placeholder=""
+                    type="text"
+                    formcontrolname="text"
+                    placeholder="Enter your test name"
                     class="form-control ng-untouched ng-pristine ng-valid"
                     pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
                   <div class="invalid-feedback"><!----><!----></div>
@@ -119,12 +121,7 @@
               </div>
               <div class="col-md-12">
                 <div class="center-btn">
-                  <button
-                    style="cursor: pointer"
-                    type="submit"
-                    class="btn cmnyellow-btn mt-4"
-                    title="Disabled untill form is valid"
-                    disabled="">
+                  <button type="submit" class="btn btn-outline-primary mt-4">
                     Submit
                   </button>
                 </div>
